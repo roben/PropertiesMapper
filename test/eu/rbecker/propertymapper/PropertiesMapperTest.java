@@ -54,15 +54,15 @@ public class PropertiesMapperTest {
      * Test of mapPropertiesToObject and mapObjectToProperties methods, of class PropertiesMapper.
      */
     @Test
-    public void testMapPropertiesToObject() throws Exception {
+    public void testPropertiesMapper() throws Exception {
         System.out.println("mapPropertiesToObject");
         Properties sourceProperties = createTestProperties();
         Properties targetProperties = new Properties();
 
         Object annotatedObject = new AnnotatedTestObject();
-        // test p1 -> object
+        // testPropertiesMapper p1 -> object
         PropertiesMapper.mapPropertiesToObject(sourceProperties, annotatedObject);
-        // test object -> p2
+        // testPropertiesMapper object -> p2
         PropertiesMapper.mapObjectToProperties(annotatedObject, targetProperties);
         System.out.println("sourceProperties = " + sourceProperties);
         System.out.println("targetProperties = " + targetProperties);
