@@ -8,13 +8,13 @@ import java.util.Properties;
  *
  * @author Robert Becker <robert at rbecker.eu>
  */
-public class PropertyMapper {
+public class PropertiesMapper {
 
     private static final boolean DEBUG = false;
 
     private static void debugPrintln(String msg, Object... args) {
         if (DEBUG) {
-            System.out.println(String.format("%s: %s", PropertyMapper.class.getSimpleName(), String.format(msg, (Object[]) args)));
+            System.out.println(String.format("%s: %s", PropertiesMapper.class.getSimpleName(), String.format(msg, (Object[]) args)));
         }
     }
 
@@ -30,7 +30,7 @@ public class PropertyMapper {
      * @param annotatedObject
      * @throws IllegalAccessException 
      */
-    public static void mapProperties(Properties p, Object annotatedObject) throws IllegalAccessException {
+    public static void mapPropertiesToObject(Properties p, Object annotatedObject) throws IllegalAccessException {
         debugPrintln("Mapping %s to object %s", p, annotatedObject);
         
         for (Field f : annotatedObject.getClass().getDeclaredFields()) {
