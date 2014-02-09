@@ -5,7 +5,7 @@ A java library to map the values from java.util.Properties objects to abitrary O
 
 Supported field types are String, Long, Integer, Double, Float, Boolean and their primitive equivalents.
 
-The library has no external dependencies and can be build using ant and Java 1.7. Previous java versions down to 1.5 should work, too, but are not yet tested and thus not enabled in the project properties. Fee free to report successes when compiling with Java < 1.7!
+The library has no external dependencies and can be build using ant and Java 1.7. Previous java versions down to 1.5 should work, too, but are not yet tested and thus not enabled in the project properties. Fee free to report success when compiling with Java < 1.7!
 
 Usage example (based on a simple TinkerForge configuration):
 
