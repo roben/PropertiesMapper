@@ -1,7 +1,7 @@
-PropertyMapper
+PropertiesMapper
 ==============
 
-A java library to map the values from java.util.Properties objects to abitrary Object fields using annotations and reflection.
+A java library to map the values from java.util.Properties objects (most likely read from .properties files for configuration) to abitrary Object fields using annotations and reflection.
 
 Supported field types are String, Long, Integer, Double, Float, Boolean and their primitive equivalents.
 
