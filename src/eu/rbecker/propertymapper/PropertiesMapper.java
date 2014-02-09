@@ -18,21 +18,20 @@ public class PropertiesMapper {
         }
     }
 
-    
     /**
      * Maps the values of the Properties instance to annotatedObject.
      * The object's fields are mapped if they are annotated via <code>@eu.rbecker.propertymapper.annotation.Property("propertyName")</code> to the corresponding property.
      * The value of the annotation must match the name of the property in the Properties object p.
      * <br/>
      * Supported field types: String, Long, Integer, Double, Float, Boolean and their primitive equivalents.
-     * 
+     *
      * @param p
      * @param annotatedObject
-     * @throws IllegalAccessException 
+     * @throws IllegalAccessException
      */
     public static void mapPropertiesToObject(Properties p, Object annotatedObject) throws IllegalAccessException {
         debugPrintln("Mapping %s to object %s", p, annotatedObject);
-        
+
         for (Field f : annotatedObject.getClass().getDeclaredFields()) {
             Property propertyAnnotation = f.getAnnotation(Property.class);
             if (propertyAnnotation != null) {
@@ -42,6 +41,48 @@ public class PropertiesMapper {
                 setFieldToValue(f, annotatedObject, value);
             }
         }
+    }
+
+    /**
+     * Maps the annotated fields of the Object to values of the Properties instance.
+     * The object's fields are mapped if they are annotated via <code>@eu.rbecker.propertymapper.annotation.Property("propertyName")</code> to the corresponding property.
+     * The value of the annotation must match the name of the property in the Properties object p.
+     * The property will be created if did not yet exist or else overriden. Existing properties which are not mapped will remain unchanged.
+     * <br/>
+     * All field types are supported using their <code>toString()</code> method.
+     *
+     * @param p
+     * @param annotatedObject
+     * @throws IllegalAccessException
+     */
+    public static void mapObjectToProperties(Object annotatedObject, Properties p) throws IllegalAccessException {
+        debugPrintln("Mapping %s from object %s", p, annotatedObject);
+
+        for (Field f : annotatedObject.getClass().getDeclaredFields()) {
+            Property propertyAnnotation = f.getAnnotation(Property.class);
+            if (propertyAnnotation != null) {
+
+                setPropertyFromObject(f, annotatedObject, propertyAnnotation, p);
+
+            }
+        }
+    }
+
+    private static void setPropertyFromObject(Field f, Object annotatedObject, Property propertyAnnotation, Properties p) throws IllegalAccessException, IllegalArgumentException {
+        // make field accessible
+        boolean oldAccessible = f.isAccessible();
+        f.setAccessible(true);
+        // get value from properties
+        Object o = f.get(annotatedObject);
+        String value = null;
+        if (o != null) {
+            value = o.toString();
+        }
+        debugPrintln("%s -> %s=%s", f.getName(), propertyAnnotation.value(), value);
+        // store in properties file
+        p.setProperty(propertyAnnotation.value(), value);
+
+        f.setAccessible(oldAccessible);
     }
 
     private static void setFieldToValue(Field f, Object annotatedObject, String value) throws IllegalAccessException, IllegalArgumentException, SecurityException {
@@ -67,12 +108,12 @@ public class PropertiesMapper {
             f.set(annotatedObject, Double.parseDouble(value));
         } else if (t.isAssignableFrom(Boolean.class) || t.isAssignableFrom(boolean.class)) {
             f.set(annotatedObject, Boolean.parseBoolean(value));
-        }else {
+        } else {
             throw new IllegalAccessException("Type " + t + " not available for property mapping.");
         }
 
         // revert write access
         f.setAccessible(oldAccess);
     }
-    
+
 }
