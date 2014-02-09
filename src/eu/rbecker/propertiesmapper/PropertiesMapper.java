@@ -1,6 +1,6 @@
-package eu.rbecker.propertymapper;
+package eu.rbecker.propertiesmapper;
 
-import eu.rbecker.propertymapper.annotation.Property;
+import eu.rbecker.propertiesmapper.annotation.MappedProperty;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
@@ -20,7 +20,7 @@ public class PropertiesMapper {
 
     /**
      * Maps the values of the Properties instance to annotatedObject.
-     * The object's fields are mapped if they are annotated via <code>@eu.rbecker.propertymapper.annotation.Property("propertyName")</code> to the corresponding property.
+     * The object's fields are mapped if they are annotated via <code>@eu.rbecker.propertymapper.annotation.MappedProperty("propertyName")</code> to the corresponding property.
      * The value of the annotation must match the name of the property in the Properties object p.
      * <br/>
      * Supported field types: String, Long, Integer, Double, Float, Boolean and their primitive equivalents.
@@ -33,7 +33,7 @@ public class PropertiesMapper {
         debugPrintln("Mapping %s to object %s", p, annotatedObject);
 
         for (Field f : annotatedObject.getClass().getDeclaredFields()) {
-            Property propertyAnnotation = f.getAnnotation(Property.class);
+            MappedProperty propertyAnnotation = f.getAnnotation(MappedProperty.class);
             if (propertyAnnotation != null) {
                 // get value from properties
                 String value = p.getProperty(propertyAnnotation.value());
@@ -45,7 +45,7 @@ public class PropertiesMapper {
 
     /**
      * Maps the annotated fields of the Object to values of the Properties instance.
-     * The object's fields are mapped if they are annotated via <code>@eu.rbecker.propertymapper.annotation.Property("propertyName")</code> to the corresponding property.
+     * The object's fields are mapped if they are annotated via <code>@eu.rbecker.propertymapper.annotation.MappedProperty("propertyName")</code> to the corresponding property.
      * The value of the annotation must match the name of the property in the Properties object p.
      * The property will be created if did not yet exist or else overriden. Existing properties which are not mapped will remain unchanged.
      * <br/>
@@ -59,7 +59,7 @@ public class PropertiesMapper {
         debugPrintln("Mapping %s from object %s", p, annotatedObject);
 
         for (Field f : annotatedObject.getClass().getDeclaredFields()) {
-            Property propertyAnnotation = f.getAnnotation(Property.class);
+            MappedProperty propertyAnnotation = f.getAnnotation(MappedProperty.class);
             if (propertyAnnotation != null) {
 
                 setPropertyFromObject(f, annotatedObject, propertyAnnotation, p);
@@ -68,7 +68,7 @@ public class PropertiesMapper {
         }
     }
 
-    private static void setPropertyFromObject(Field f, Object annotatedObject, Property propertyAnnotation, Properties p) throws IllegalAccessException, IllegalArgumentException {
+    private static void setPropertyFromObject(Field f, Object annotatedObject, MappedProperty propertyAnnotation, Properties p) throws IllegalAccessException, IllegalArgumentException {
         // make field accessible
         boolean oldAccessible = f.isAccessible();
         f.setAccessible(true);

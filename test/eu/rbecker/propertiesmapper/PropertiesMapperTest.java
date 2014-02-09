@@ -1,6 +1,7 @@
-package eu.rbecker.propertymapper;
+package eu.rbecker.propertiesmapper;
 
-import eu.rbecker.propertymapper.annotation.Property;
+import eu.rbecker.propertiesmapper.PropertiesMapper;
+import eu.rbecker.propertiesmapper.annotation.MappedProperty;
 import java.util.Properties;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,27 +14,27 @@ public class PropertiesMapperTest {
 
     private class AnnotatedTestObject {
 
-        @Property("test.String")
+        @MappedProperty("test.String")
         private String testString;
-        @Property("test.int")
+        @MappedProperty("test.int")
         private int testPrimitiveInt;
-        @Property("test.Integer")
+        @MappedProperty("test.Integer")
         private Integer testInteger;
-        @Property("test.long")
+        @MappedProperty("test.long")
         private long testPrimitiveLong;
-        @Property("test.Long")
+        @MappedProperty("test.Long")
         private Long testLong;
-        @Property("test.float")
+        @MappedProperty("test.float")
         private float testPrimitiveFloat;
-        @Property("test.Float")
+        @MappedProperty("test.Float")
         private Float testFloat;
-        @Property("test.double")
+        @MappedProperty("test.double")
         private double testPrimitiveDouble;
-        @Property("test.Double")
+        @MappedProperty("test.Double")
         private Double testDouble;
-        @Property("test.boolean")
+        @MappedProperty("test.boolean")
         private boolean testPrimitiveBoolean;
-        @Property("test.Boolean")
+        @MappedProperty("test.Boolean")
         private Boolean testBoolean;
 
     }

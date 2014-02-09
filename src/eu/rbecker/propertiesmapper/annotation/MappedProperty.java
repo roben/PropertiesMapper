@@ -1,4 +1,4 @@
-package eu.rbecker.propertymapper.annotation;
+package eu.rbecker.propertiesmapper.annotation;
 
 import static java.lang.annotation.ElementType.FIELD;
 import java.lang.annotation.Retention;
@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
  */
 @Target({FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Property {
+public @interface MappedProperty {
     String value();
 }
