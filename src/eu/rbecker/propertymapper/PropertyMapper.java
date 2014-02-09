@@ -65,7 +65,9 @@ public class PropertyMapper {
             f.set(annotatedObject, Float.parseFloat(value));
         } else if (t.isAssignableFrom(Double.class) || t.isAssignableFrom(double.class)) {
             f.set(annotatedObject, Double.parseDouble(value));
-        } else {
+        } else if (t.isAssignableFrom(Boolean.class) || t.isAssignableFrom(boolean.class)) {
+            f.set(annotatedObject, Boolean.parseBoolean(value));
+        }else {
             throw new IllegalAccessException("Type " + t + " not available for property mapping.");
         }
 
