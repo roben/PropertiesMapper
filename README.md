@@ -3,7 +3,7 @@ PropertyMapper
 
 A java library to map the values from java.util.Properties objects to abitrary Object fields using annotations and reflection.
 
-The library has no external dependencies and can be build using ant and Java 1.5.
+The library has no external dependencies and can be build using ant and Java 1.7. Previous Java versions down to 1.5 should work, too, but are not yet tested and thus not enabled in the project properties. Fee free to report successes compiling with Java < 1.7!
 
 Supported field types are String, Long, Integer, Double, Float, Boolean and their primitive equivalents.
 
