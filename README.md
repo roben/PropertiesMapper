@@ -33,7 +33,7 @@ public class TinkerConfig {
 }
 ```
 
-And finally, to map the contents of the properties file all:
+And finally, to map the contents of the properties file:
 ```java
 Properties p = loadProperties(); // you still need to do this by yourself, don't care where the properties come from
 PropertyMapper.mapProperties(p, myAnnotatedObject); // Values from the p are written to myConfigObject based on the @Property annotations
