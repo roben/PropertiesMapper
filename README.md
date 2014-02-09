@@ -1,9 +1,11 @@
 PropertyMapper
 ==============
 
-A java library to map java.util.Properties to abitrary Object fields using annotations and reflection.
+A java library to map the values from java.util.Properties objects to abitrary Object fields using annotations and reflection.
 
-Supported field types: String, Long, Integer, Double, Float, Boolean and their primitive equivalents.
+The library has no external dependencies and can be build using ant.
+
+Supported field types are String, Long, Integer, Double, Float, Boolean and their primitive equivalents.
 
 Usage example (based on a simple TinkerForge configuration):
 
