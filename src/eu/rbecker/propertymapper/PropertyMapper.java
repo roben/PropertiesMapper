@@ -49,7 +49,7 @@ public class PropertyMapper {
         boolean oldAccess = f.isAccessible();
         f.setAccessible(true);
         // set value in object
-        Class t = f.getType();
+        Class<?> t = f.getType();
 
         // set empty values to null
         if (value != null && value.isEmpty()) {
