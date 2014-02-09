@@ -1,6 +1,5 @@
 package eu.rbecker.propertiesmapper;
 
-import eu.rbecker.propertiesmapper.PropertiesMapper;
 import eu.rbecker.propertiesmapper.annotation.MappedProperty;
 import java.util.Properties;
 import org.junit.Test;
